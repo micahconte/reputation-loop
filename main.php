@@ -1,25 +1,40 @@
 <?php
+
+// ini_set('display_errors',true);
+require('lib/curl.php');
+
 $url = 'http://test.localfeedbackloop.com/api?apiKey=61067f81f8cf7e4a1f673cd230216112&noOfReviews=10&internal=1&yelp=1&google=1&offset=50&threshold=1';
 
 
 // create curl resource
-        $ch = curl_init();
+        // $ch = curl_init();
 
-        // set url
-        curl_setopt($ch, CURLOPT_URL, $url);
+        // // set url
+        // curl_setopt($ch, CURLOPT_URL, $url);
 
-        //return the transfer as a string
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        // //return the transfer as a string
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        // curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        
+
+        // // $output contains the output string
+        // $data = curl_exec($ch);
+
+        // // close curl resource to free up system resources
+        // curl_close($ch);    
+
+
+        $curl = new Curl($url);
         
 
         // $output contains the output string
-        $data = curl_exec($ch);
+        $data = $curl->exec();
 
         // close curl resource to free up system resources
-        curl_close($ch);    
+        $curl->close();    
 
-        $objArray = json_decode($data);
+
+        $objArray = $data;
 
 ?>
 
